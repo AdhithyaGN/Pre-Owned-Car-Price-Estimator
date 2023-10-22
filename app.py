@@ -45,7 +45,7 @@ def predict_datapoint():
         print("Before prdiction")
 
 
-        predict_pipeline=predict_pipeline()
+        predict_pipeline=PredictPipeline(
         print("mid prediction")
         results=predict_pipeline.predict(pred_df)
         print('after prediction')
@@ -53,7 +53,7 @@ def predict_datapoint():
         return render_template('home.html',results=results[0])
     
 if __name__=="__main__":
-        app.run(host="0.0.0.0")
+        app.run(host="0.0.0.0",debug=True)
         
 
 
@@ -69,6 +69,6 @@ if __name__=="__main__":
 
 
 
-        )
+        
 
 

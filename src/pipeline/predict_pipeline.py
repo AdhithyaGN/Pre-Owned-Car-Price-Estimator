@@ -3,6 +3,7 @@ import pandas as pd
 from src.exception import CustomException
 from src.utils import load_obj
 import datetime
+import os
 
 class PredictPipeline:
     def __init__(self):
