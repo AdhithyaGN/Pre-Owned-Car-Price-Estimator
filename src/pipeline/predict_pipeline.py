@@ -18,7 +18,7 @@ class PredictPipeline:
             model=load_obj(file_path=model_path)
             preprocessor=load_obj(file_path=preprocessor_path)
             print("after loading")
-            data_scaled=preprocessor.fit(features)
+            data_scaled=preprocessor.transform(features)
             preds=model.predict(data_scaled)
             return preds
         except Exception as e:
@@ -55,6 +55,7 @@ class CustomData:
         self.Finance_cash=Finance_Cash
     def get_data_as_data_frame(self):
         try:
+            
             custom_data_input_dict={
                 'POC Sales Date':[self.poc_sales_data],
                 'Sale Type':[self.sale_type],
@@ -67,11 +68,15 @@ class CustomData:
                 'Buying Price':[self.Buying_Price],
                 'Total Actual RF':[self.Total_Actual_RF],
                 'Warranty Charges':[self.Warranty_Charges],
-                'Insurance Charges':[self.Insurance_Charges]
+                'Insurance Charges':[self.Insurance_Charges],
+                'Finance/Cash':[self.Finance_cash]
                 
             }
             data=pd.DataFrame(custom_data_input_dict)
-            data['Date Of Registration']=pd.to_datetime(data['Date Of Registration'],origin='1900-01-01',unit='D')
+            data['POC Sales Date']=pd.to_datetime(data['POC Sales Date'])
+            data['Date Of Registration']=pd.to_datetime(data['Date Of Registration'])
+            #data['POC Sales Date']=pd.to_datetime(data['POC Sales Date'],origin='1900-01-01',unit='D')
+            #data['Date Of Registration']=pd.to_datetime(data['Date Of Registration'],origin='1900-01-01',unit='D')
             data['YOM'] = pd.to_numeric(data['YOM'], errors='coerce', downcast='integer')
 
             data['Age']=data['POC Sales Date']-data['Date Of Registration']

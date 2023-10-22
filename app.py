@@ -4,6 +4,7 @@ import pandas as pd
 
 from sklearn.preprocessing import StandardScaler
 from src.pipeline.predict_pipeline import PredictPipeline,CustomData
+import datetime
 
 
 application=Flask(__name__)
@@ -45,12 +46,12 @@ def predict_datapoint():
         print("Before prdiction")
 
 
-        predict_pipeline=PredictPipeline(
+        predict_pipeline=PredictPipeline()
         print("mid prediction")
         results=predict_pipeline.predict(pred_df)
         print('after prediction')
 
-        return render_template('home.html',results=results[0])
+        return render_template('home.html',results=round(results[0]))
     
 if __name__=="__main__":
         app.run(host="0.0.0.0",debug=True)
