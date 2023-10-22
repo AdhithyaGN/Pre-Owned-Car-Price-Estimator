@@ -1,0 +1,465 @@
+<html>
+<body>
+    <div class="login">
+        <hi>True Value Car Price Estimator</hi>
+
+
+        <form action="{{url_for('predict_datapoint')}}" method="post">
+            <h1>
+                <legend>Pre Owned Car  Price Prediction</legend>
+
+            </h1>
+
+            <div class="mb-3">
+                <label class="form-label">POC Sale Date</label>
+                <input class="'form-control" type="'date" name="POCSaleDate" required>
+            </div>
+            <div class="'mb-3">
+                <label class="form-label">Sale Type</label>
+                <select class="form-control" name="Saletype" placeholder="Enter Sale Type" required>
+                    <option class="placeholder" selected disabled value="">Select Sale Type</option>
+                    <option value="Retail To Customer">
+                        Retail To Customer
+                    </option>
+                    <option value="Wholesale To Broker">
+                        Wholesale To Broker
+                    </option>
+                    <option value="Scrap">
+                        Scrap
+                    </option>
+                </select>
+            </div>
+            <div class="'mb-3">
+                <label class="form-label">Customer City</label>
+                <select class="form-control" name="CustomerCity" placeholder="Enter Customer City" required>
+                    <option class="placeholder" selected disabled value="">Select City</option>
+                    
+                    <option value="ERNAKULAM">
+                        ERNAKULAM
+                    </option>
+                    <option value="KOTTAYAM">
+                        KOTTAYAM
+                    </option>
+                    <option value="PALA">
+                        PALA
+                    </option>
+                    <option value="Thodupuzha ">
+                        Thodupuzha 
+                    </option>
+                    <option value="PATHANAMTHITTA">
+                        PATHANAMTHITTA
+                    </option>
+                    <option value="IDUKKI">
+                        IDUKKI
+                    </option>
+                    <option value="KOLLAM">
+                        KOLLAM
+                    </option>
+                    <option value="CHANGANASERRY">
+                        CHANGANASERRY
+                    </option>
+                    <option value="KANJIRAPALLY">
+                        KANJIRAPALLY
+                    </option>
+                    <option value="MUVATTUPUZHA">
+                        MUVATTUPUZHA
+                    </option>
+                    <option value="THIRUVALLA">
+                        THIRUVALLA
+                    </option>
+                    <option value="KOZHIKODE">
+                        KOZHIKODE
+                    </option>
+                    <option value="MALAPPURAM">
+                        MALAPPURAM
+                    </option>
+                    <option value="ALAPPUZHA">
+                        ALAPPUZHA
+                    </option>
+                    <option value="COCHIN">
+                        COCHIN
+                    </option>
+                    <option value="KANJIRAPPALLY">
+                        KANJIRAPPALLY
+                    </option>
+                    <option value="CHENGANNUR">
+                        CHENGANNUR
+                    </option>
+                    <option value="KOTTARAKKARA">
+                        KOTTARAKKARA
+                    </option>
+                    <option value="THRISSUR">
+                        THRISSUR
+                    </option>
+                    <option value="VALANCHERRY">
+                        VALANCHERRY
+                    </option>
+                    <option value="KATTAPPANA">
+                        KATTAPPANA
+                    </option>
+                    <option value="ALLEPPEY">
+                        ALLEPPEY
+                    </option>
+                    <option value="KOTHAMANGALAM">
+                        KOTHAMANGALAM
+                    </option>
+                    <option value="CHERTHALA">
+                        CHERTHALA
+                    </option>
+                    <option value="KAYAMKULAM">
+                        KAYAMKULAM
+                    </option>
+                    <option value="WAYANAD">
+                        WAYANAD
+                    </option>
+                    <option value="Erattupetta ">
+                        Erattupetta 
+                    </option>
+                    <option value="KASARGOD">
+                        KASARGOD
+                    </option>
+                    <option value="MAVELLIKARA">
+                        MAVELLIKARA
+                    </option>
+                    <option value="ADOOR">
+                        ADOOR
+                    </option>
+                    <option value="PALAKKAD">
+                        PALAKKAD
+                    </option>
+                    <option value="Vaikom ">
+                        Vaikom 
+                    </option>
+                    <option value="CALICUT">
+                        CALICUT
+                    </option>
+                    <option value="TRIVANDRUM">
+                        TRIVANDRUM
+                    </option>
+                    <option value="CANNANORE ">
+                        CANNANORE 
+                    </option>
+                    <option value="Athirampuzha ">
+                        Athirampuzha 
+                    </option>
+                    <option value="QUILON">
+                        QUILON
+                    </option>
+                    <option value="MALLAPPALLY">
+                        MALLAPPALLY
+                    </option>
+                    <option value="THODUPUZHA">
+                        THODUPUZHA 
+                    </option>
+                    <option value="FORT KOCHI">
+                        FORT KOCHI 
+                    </option>
+                    <option value="MAVELIKARA">
+                        MAVELIKARA 
+                    </option>
+                    <option value="ANGAMALLY">
+                        ANGAMALLY
+                    </option>
+                    <option value="THIRUVANANTHAPURAM">
+                        THIRUVANANTHAPURAM 
+                    </option>
+                    <option value="RANNI">
+                        RANNI 
+                    </option>
+                    <option value="PANDALAM">
+                        PANDALAM
+                    </option>
+                    <option value="KONNI">
+                        KONNI 
+                    </option>
+                    <option value="ALAKODE">
+                        ALAKODE
+                    </option>
+                    <option value="AYOOR">
+                        AYOOR 
+                    </option>
+                    <option value="Pallichal ">
+                        Pallichal 
+                    </option>
+                    <option value="CHANGANASSERY">
+                        CHANGANASSERY 
+                    <option value="None">
+                        None
+                    </option>
+                </select>
+            </div>
+            <div class="'mb-3">
+                <label class="form-label">Model</label>
+                <select class="form-control" name="Model" placeholder="Enter Model" required>
+                    <option class="placeholder" selected disabled value="">Select Model</option>
+                    
+                    <option value="RITZ">
+                        RITZ
+                    </option>
+                    <option value="SWIFT DZIRE">
+                        SWIFT DZIRE
+                    </option>
+                    <option value="ALTO 800">
+                        ALTO 800
+                    </option>
+                    <option value="M 800 ">
+                        M 800 
+                    </option>
+                    <option value="ZEN">
+                        ZEN
+                    </option>
+                    <option value="ALTO">
+                        ALTO
+                    </option>
+                    <option value="SWIFT">
+                        SWIFT
+                    </option>
+                    <option value="WAGON R">
+                        WAGON R
+                    </option>
+                    <option value="A-STAR">
+                        A-STAR
+                    </option>
+                    <option value="ZEN ESTILO">
+                        ZEN ESTILO
+                    </option>
+                    <option value="OMNI">
+                        OMNI
+                    </option>
+                    <option value="EECO">
+                        EECO
+                    </option>
+                    <option value="CELERIO">
+                        CELERIO
+                    </option>
+                    <option value="ALTO K10">
+                        ALTO K10
+                    </option>
+                    <option value="ERTIGA">
+                        ERTIGA
+                    </option>
+                    <option value="NEW ERTIGA">
+                        NEW ERTIGA
+                    </option>
+                    <option value="VITARA BREZZA">
+                        VITARA BREZZA
+                    </option>
+                    <option value="NEW SWIFT">
+                        NEW SWIFT
+                    </option>
+                    <option value="BALENO">
+                        BALENO
+                    </option>
+                    <option value="CIAZ">
+                        CIAZ
+                    </option>
+                    <option value="ALTO K10 (NEW)">
+                        ALTO K10 (NEW)
+                    </option>
+                    <option value="DZIRE">
+                        DZIRE
+                    </option>
+                    <option value="WagonR">
+                        WagonR
+                    </option>
+                    <option value="Ignis">
+                        Ignis
+                    </option>
+                    <option value="SCROSS">
+                        SCROSS
+                    </option>
+                    <option value="SX4">
+                        SX4
+                    </option>
+                    <option value="S-PRESSO">
+                        S-PRESSO 
+                    </option>
+                    <option value="HYUNDAI">
+                        HYUNDAI
+                    </option>
+                    <option value="HONDA">
+                        HONDA
+                    </option>
+                    <option value="NEW CELERIO">
+                        NEW CELERIO
+                    </option>
+                    <option value="TATA">
+                        TATA
+                    </option>
+                    <option value="NEW BALENO">
+                        NEW BALENO
+                    </option>
+                    <option value="NISSAN'">
+                        NISSAN 
+                    </option>
+                    <option value="OTHERS">
+                        OTHERS
+                    </option>
+                    <option value="RENAULT">
+                        RENAULT
+                    </option>
+                    <option value="TOYOTA'">
+                        TOYOTA
+                    </option>
+                    <option value="VOLKSWAGEN">
+                        VOLKSWAGEN
+                    </option>
+                    <option value="MAHINDRA">
+                        MAHINDRA
+                    </option>
+                    <option value="CHEVROLET">
+                        CHEVROLET
+                    </option>
+                    <option value="EICHER">
+                        EICHER
+                    </option>
+                    <option value="FIAT">
+                        FIAT
+                    </option>
+                    <option value="XL6">
+                        XL6
+                    </option>
+                    <option value="FORD">
+                        FORD
+                    </option>
+                    <option value="FORCE MOTORS">
+                        FORCE MOTORS
+                    </option>
+                    <option value="ESTEEM">
+                        ESTEEM
+                    </option>
+                    <option value="SUPER CARRY">
+                        SUPER CARRY
+                    </option>
+                    <option value="NEW ALTO K10">
+                        NEW ALTO K10
+                    </option>
+                </select>
+            </div>
+            <div class="'mb-3">
+                <label class="form-label">Vehicle Sold Category</label>
+                <select class="form-control" name="VehicleSoldCategory" placeholder="Enter Vehicle Sold Type" required>
+                    <option class="placeholder" selected disabled value="">Select Vehicle Sold Category</option>
+                    <option value="N-TV">
+                        N-TV
+                    </option>
+                    <option value="TV">
+                        TV
+                    </option>
+                    
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">YOM</label>
+                <input class="form-control" type="number" name="YOM" placeholder="Enter Year Of Manufacturing" step="1" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Date of Registration</label>
+                <input class="'form-control" type="'date" name="DateOfRegistration" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Selling Mileage</label>
+                <input class="form-control" type="number" name="SellingMileage" placeholder="Enter Selling Mileage" step="any" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Buying Price</label>
+                <input class="form-control" type="number" name="BuyingPrice" placeholder="Enter Buying Price" step="any" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Total Actual RF</label>
+                <input class="form-control" type="number" name="TotalActualRF" placeholder="Enter Refurbished Cost" step="any" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Insurance Charges</label>
+                <input class="form-control" type="number" name="InsuranceCharge" placeholder="Enter Insurance Charges" step="any" />
+            </div>
+            <div class="'mb-3">
+                <label class="form-label">Finance/Cash</label>
+                <select class="form-control" name="Finance/Cash" placeholder="Select Finance/cash" required>
+                    <option class="placeholder" selected disabled value="">Select F/C</option>
+                    <option value="F">
+                        F
+                    </option>
+                    <option value="C">
+                        C
+                    </option>
+                    
+                </select>
+            </div>
+            <div class="mb-3">
+                <input class="btn btn-primary" type="submit" value="Predict Car Price" required />
+            </div>
+
+        </form>
+        <h2>
+            The Car Price is estimated as {{results}}
+        </h2>
+    </div>
+</body>
+</html>
+
+            
+
+
+                    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
