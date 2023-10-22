@@ -60,33 +60,33 @@ class DataTransformation():
             raise CustomException(e,sys)
         
 
-    def initiate_data_transformation(self,train_path,test_path):
+    def initiate_data_transformation(self,data_path):
 
         try:
 
 
-            train_data=pd.read_excel(train_path)
-            test_data=pd.read_excel(test_path)
+            data=pd.read_excel(data_path)
+            
 
-            logging.info("train and test data loaded as dataframe")
+            logging.info("data loaded as dataframe")
 
-            train_features=train_data.drop(columns=['POC Sales Date',
+            features=data.drop(columns=['POC Sales Date',
                                                 'Date Of Registration','Vehicle Sell Price'],axis=1)
-            test_features=test_data.drop(columns=['POC Sales Date',
-                                                'Date Of Registration','Vehicle Sell Price'],axis=1)
-            train_labels=train_data['Vehicle Sell Price']
+            labels=data['Vehicle Sell Price']
+            
+            
 
-            test_labels=test_data['Vehicle Sell Price']
+            
 
-            logging.info('Applying preprocessing obj on training and test data')
+            logging.info('Applying preprocessing  data')
 
             prepocessing_obj=self.makecoltransformer()
 
-            preprocessed_train_data=prepocessing_obj.fit_transform(train_features)
-            preprocessed_test_data=prepocessing_obj.fit_transform(test_features)
+            preprocessed_data=prepocessing_obj.fit_transform(features)
+            
 
-            train_arr=np.column_stack((preprocessed_train_data.toarray(),train_labels.to_numpy()))
-            test_arr=np.column_stack((preprocessed_test_data.toarray(),test_labels.to_numpy()))
+            data_arr=np.column_stack((preprocessed_data.toarray(),labels.to_numpy()))
+            
 
 
             logging.info('Saving preprocessing object')
@@ -95,7 +95,7 @@ class DataTransformation():
                     obj=prepocessing_obj)
         
 
-            return (train_arr,test_arr,self.data_transformation_config.preprocessor_obj_filepath)
+            return (data_arr,self.data_transformation_config.preprocessor_obj_filepath)
         except Exception as e:
             raise CustomException(e,sys)
     

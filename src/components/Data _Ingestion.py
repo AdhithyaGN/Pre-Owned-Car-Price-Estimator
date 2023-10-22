@@ -9,12 +9,12 @@ import re
 import numpy as np
 from src.components.Data_Transformation import DataTransformationConfig
 from src.components.Data_Transformation import DataTransformation
+from src.components.Model_Trainer import ModelTrainer,ModelTrainerConfig
 
 @dataclass()
 class  DataIngestionConfig:
-    train_data_path:str=os.path.join('artifacts','train.xlsx')
-    test_data_path:str=os.path.join('artifacts','test.xlsx')
-    raw_data_path:str=os.path.join('artifacts','raw.xlsx')
+    data_path:str=os.path.join('artifacts','data.xlsx')
+    
 
 
 class DataIngestion:
@@ -61,23 +61,23 @@ class DataIngestion:
             logging.info('hyphen values removed from  Finance/cash column')
 
         
-            os.makedirs(os.path.dirname(self.ingestionconfig.train_data_path),exist_ok=True)
+            os.makedirs(os.path.dirname(self.ingestionconfig.data_path),exist_ok=True)
 
-            data.to_excel(self.ingestionconfig.raw_data_path,index=False,header=True)
+            data.to_excel(self.ingestionconfig.data_path,index=False,header=True)
 
-            logging.info('Train test split initiated')
+            
 
-            train_set,test_set=train_test_split(data,test_size=0.2,random_state=42)
+            
 
-            train_set.to_excel(self.ingestionconfig.train_data_path,index=False,header=True)
+            
 
-            test_set.to_excel(self.ingestionconfig.test_data_path,index=False,header=True)
+            
 
             logging.info('Data Ingestion successfully done')
 
             return(
-                self.ingestionconfig.train_data_path,
-                self.ingestionconfig.test_data_path
+                self.ingestionconfig.data_path
+                
             )
 
 
@@ -90,10 +90,15 @@ class DataIngestion:
 
 if __name__=="__main__":
     obj=DataIngestion()
-    train_data,test_data=obj.initiate_data_ingestion()
+    data_path=obj.initiate_data_ingestion()
 
     transformation_obj=DataTransformation()
-    train_arr,test_arr,_=transformation_obj.initiate_data_transformation(train_data,test_data)
+    data_arr,_=transformation_obj.initiate_data_transformation(data_path)
+
+    modeltrainer=ModelTrainer()
+    print(modeltrainer.initiate_model_trainer(data_arr=data_arr))
+
+
 
 
 

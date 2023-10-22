@@ -26,7 +26,7 @@ def eval_models(X_train,Y_train,X_test,Y_test,models:dict):
 
 
         for i in range(len(models)):
-            model=list(model.values())[i]
+            model=list(models.values())[i]
 
             model.fit(X_train,Y_train)
 
@@ -38,7 +38,7 @@ def eval_models(X_train,Y_train,X_test,Y_test,models:dict):
 
             test_model_score=r2_score(Y_test,Y_test_pred)
 
-            report[list(model.keys())[i]]=test_model_score
+            report[list(models.keys())[i]]=test_model_score
 
 
 
