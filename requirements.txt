@@ -4,4 +4,9 @@ numpy
 matplotlib
 scikit-learn
 datetime
--e .
+xgboost
+catboost
+Flask
+dill
+#-e .
+
