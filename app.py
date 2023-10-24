@@ -17,10 +17,11 @@ app=application
 def index():
     return render_template('index.html')
 
-
+@app.route('/gokul')
+def gokul():
+     return 
 
 @app.route('/predictdata',methods=['GET','POST'])
-
 def predict_datapoint():
     if request.method=='GET':
         return render_template('home.html')

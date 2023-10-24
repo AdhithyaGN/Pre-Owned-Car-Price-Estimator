@@ -1,469 +1,411 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>True Value Car Price Predictor</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
 <body>
-    <div class="login">
-        <title>True Value Car Price Estimator</title>
+    <nav class="navbar navbar-dark bg-dark ">
+        <div class="container-fluid">
+            <img src="https://avgmotors.co.in/wp-content/uploads/2021/10/logo-5.jpg" class="rounded float-end" alt="avgmotors">
+            <a class="navbar-brand" href="#">Car Price Prediction-Stock Vehicles</a>
+            <img src="https://marutisuzukitruevaluecdn2.azureedge.net/-/media/feature/truevalue/header/true-value-logo.png?modified=20190830090427&h=33&w=204&la=en&hash=07C384B14F8AD89854B52E8F4A4E03D0" class="rounded float-start" alt="...">
+        </div>
+    </nav>
+    <br><br><br>
+    
+        <div class="container">
+            <form action="{{url_for('predict_datapoint')}}" method="post">
+            <div class="row" >
+                
+                <div class="col-6">
+                    <div class="p-3 text-primary-emphasis bg-info-subtle border border-primary-subtle">
+                        <h1 class="display-5">True Value Datails</h1>
+                        <hr>
+                        <br>
+                        <div class="mb-3">
+                            <label for="formGroupExampleInput" class="form-label">POC Sale Date</label>
+                            <input type="'date" name="POCSaleDate"  class="form-control" id="formGroupExampleInput" placeholder="Type Sale Date in 'yy-mm-dd' format" required>
+                        </div>
+                     
+                        <div class="mb-3">
+                            <label class="form-label">YOM</label>
+                            <input class="form-control"  type="number" name="YOM" placeholder="Enter Year Of Manufacturing" step="1" />
+                        </div>
+                        <div class="mb-3">
+                            <label for="formGroupExampleInput" class="form-label">Date of Registration</label>
+                            <input type="'date" name="DateOfRegistration" class="form-control" id="formGroupExampleInput" placeholder="Type Reg Date in 'yy-mm-dd' format" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Selling Mileage</label>
+                            <input class="form-control" type="number" name="SellingMileage" placeholder="Enter Selling Mileage" step="any" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Buying Price</label>
+                            <input class="form-control" type="number" name="BuyingPrice" placeholder="Enter Buying Price" step="any" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Total Actual RF</label>
+                            <input class="form-control" type="number" name="TotalActualRF" placeholder="Enter Refurbished Cost" step="any" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Warrenty Charges</label>
+                            <input class="form-control" type="number" name="WarrentyCharges" placeholder="Enter Refurbished Cost" step="any" />
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Insurance Charges</label>
+                            <input class="form-control" type="number" name="InsuranceCharge" placeholder="Enter Insurance Charges" step="any" />
+                        </div>
+                    </div>
 
-
-        <form action="{{url_for('predict_datapoint')}}" method="post">
-            <h1>
-                <legend>Pre Owned Car  Price Prediction</legend>
-
-            </h1>
-
-            <div class="mb-3">
-                <label class="form-label">POC Sale Date</label>
-                <input class="'form-control" type="'date" name="POCSaleDate" required>
-            </div>
-            <div class="'mb-3">
-                <label class="form-label">Sale Type</label>
-                <select class="form-control" name="Saletype" placeholder="Enter Sale Type" required>
-                    <option class="placeholder" selected disabled value="">Select Sale Type</option>
-                    <option value="Retail To Customer">
-                        Retail To Customer
-                    </option>
-                    <option value="Wholesale To Broker">
-                        Wholesale To Broker
-                    </option>
-                    <option value="Scrap">
-                        Scrap
-                    </option>
-                </select>
-            </div>
-            <div class="'mb-3">
-                <label class="form-label">Customer City</label>
-                <select class="form-control" name="CustomerCity" placeholder="Enter Customer City" required>
-                    <option class="placeholder" selected disabled value="">Select City</option>
-                    
-                    <option value="ERNAKULAM">
-                        ERNAKULAM
-                    </option>
-                    <option value="KOTTAYAM">
-                        KOTTAYAM
-                    </option>
-                    <option value="PALA">
-                        PALA
-                    </option>
-                    <option value="Thodupuzha ">
-                        Thodupuzha 
-                    </option>
-                    <option value="PATHANAMTHITTA">
-                        PATHANAMTHITTA
-                    </option>
-                    <option value="IDUKKI">
-                        IDUKKI
-                    </option>
-                    <option value="KOLLAM">
-                        KOLLAM
-                    </option>
-                    <option value="CHANGANASERRY">
-                        CHANGANASERRY
-                    </option>
-                    <option value="KANJIRAPALLY">
-                        KANJIRAPALLY
-                    </option>
-                    <option value="MUVATTUPUZHA">
-                        MUVATTUPUZHA
-                    </option>
-                    <option value="THIRUVALLA">
-                        THIRUVALLA
-                    </option>
-                    <option value="KOZHIKODE">
-                        KOZHIKODE
-                    </option>
-                    <option value="MALAPPURAM">
-                        MALAPPURAM
-                    </option>
-                    <option value="ALAPPUZHA">
-                        ALAPPUZHA
-                    </option>
-                    <option value="COCHIN">
-                        COCHIN
-                    </option>
-                    <option value="KANJIRAPPALLY">
-                        KANJIRAPPALLY
-                    </option>
-                    <option value="CHENGANNUR">
-                        CHENGANNUR
-                    </option>
-                    <option value="KOTTARAKKARA">
-                        KOTTARAKKARA
-                    </option>
-                    <option value="THRISSUR">
-                        THRISSUR
-                    </option>
-                    <option value="VALANCHERRY">
-                        VALANCHERRY
-                    </option>
-                    <option value="KATTAPPANA">
-                        KATTAPPANA
-                    </option>
-                    <option value="ALLEPPEY">
-                        ALLEPPEY
-                    </option>
-                    <option value="KOTHAMANGALAM">
-                        KOTHAMANGALAM
-                    </option>
-                    <option value="CHERTHALA">
-                        CHERTHALA
-                    </option>
-                    <option value="KAYAMKULAM">
-                        KAYAMKULAM
-                    </option>
-                    <option value="WAYANAD">
-                        WAYANAD
-                    </option>
-                    <option value="Erattupetta ">
-                        Erattupetta 
-                    </option>
-                    <option value="KASARGOD">
-                        KASARGOD
-                    </option>
-                    <option value="MAVELLIKARA">
-                        MAVELLIKARA
-                    </option>
-                    <option value="ADOOR">
-                        ADOOR
-                    </option>
-                    <option value="PALAKKAD">
-                        PALAKKAD
-                    </option>
-                    <option value="Vaikom ">
-                        Vaikom 
-                    </option>
-                    <option value="CALICUT">
-                        CALICUT
-                    </option>
-                    <option value="TRIVANDRUM">
-                        TRIVANDRUM
-                    </option>
-                    <option value="CANNANORE ">
-                        CANNANORE 
-                    </option>
-                    <option value="Athirampuzha ">
-                        Athirampuzha 
-                    </option>
-                    <option value="QUILON">
-                        QUILON
-                    </option>
-                    <option value="MALLAPPALLY">
-                        MALLAPPALLY
-                    </option>
-                    <option value="THODUPUZHA">
-                        THODUPUZHA 
-                    </option>
-                    <option value="FORT KOCHI">
-                        FORT KOCHI 
-                    </option>
-                    <option value="MAVELIKARA">
-                        MAVELIKARA 
-                    </option>
-                    <option value="ANGAMALLY">
-                        ANGAMALLY
-                    </option>
-                    <option value="THIRUVANANTHAPURAM">
-                        THIRUVANANTHAPURAM 
-                    </option>
-                    <option value="RANNI">
-                        RANNI 
-                    </option>
-                    <option value="PANDALAM">
-                        PANDALAM
-                    </option>
-                    <option value="KONNI">
-                        KONNI 
-                    </option>
-                    <option value="ALAKODE">
-                        ALAKODE
-                    </option>
-                    <option value="AYOOR">
-                        AYOOR 
-                    </option>
-                    <option value="Pallichal ">
-                        Pallichal 
-                    </option>
-                    <option value="CHANGANASSERY">
-                        CHANGANASSERY 
-                    <option value="None">
-                        None
-                    </option>
-                </select>
-            </div>
-            <div class="'mb-3">
-                <label class="form-label">Model</label>
-                <select class="form-control" name="Model" placeholder="Enter Model" required>
-                    <option class="placeholder" selected disabled value="">Select Model</option>
-                    
-                    <option value="RITZ">
-                        RITZ
-                    </option>
-                    <option value="SWIFT DZIRE">
-                        SWIFT DZIRE
-                    </option>
-                    <option value="ALTO 800">
-                        ALTO 800
-                    </option>
-                    <option value="M 800 ">
-                        M 800 
-                    </option>
-                    <option value="ZEN">
-                        ZEN
-                    </option>
-                    <option value="ALTO">
-                        ALTO
-                    </option>
-                    <option value="SWIFT">
-                        SWIFT
-                    </option>
-                    <option value="WAGON R">
-                        WAGON R
-                    </option>
-                    <option value="A-STAR">
-                        A-STAR
-                    </option>
-                    <option value="ZEN ESTILO">
-                        ZEN ESTILO
-                    </option>
-                    <option value="OMNI">
-                        OMNI
-                    </option>
-                    <option value="EECO">
-                        EECO
-                    </option>
-                    <option value="CELERIO">
-                        CELERIO
-                    </option>
-                    <option value="ALTO K10">
-                        ALTO K10
-                    </option>
-                    <option value="ERTIGA">
-                        ERTIGA
-                    </option>
-                    <option value="NEW ERTIGA">
-                        NEW ERTIGA
-                    </option>
-                    <option value="VITARA BREZZA">
-                        VITARA BREZZA
-                    </option>
-                    <option value="NEW SWIFT">
-                        NEW SWIFT
-                    </option>
-                    <option value="BALENO">
-                        BALENO
-                    </option>
-                    <option value="CIAZ">
-                        CIAZ
-                    </option>
-                    <option value="ALTO K10 (NEW)">
-                        ALTO K10 (NEW)
-                    </option>
-                    <option value="DZIRE">
-                        DZIRE
-                    </option>
-                    <option value="WagonR">
-                        WagonR
-                    </option>
-                    <option value="Ignis">
-                        Ignis
-                    </option>
-                    <option value="SCROSS">
-                        SCROSS
-                    </option>
-                    <option value="SX4">
-                        SX4
-                    </option>
-                    <option value="S-PRESSO">
-                        S-PRESSO 
-                    </option>
-                    <option value="HYUNDAI">
-                        HYUNDAI
-                    </option>
-                    <option value="HONDA">
-                        HONDA
-                    </option>
-                    <option value="NEW CELERIO">
-                        NEW CELERIO
-                    </option>
-                    <option value="TATA">
-                        TATA
-                    </option>
-                    <option value="NEW BALENO">
-                        NEW BALENO
-                    </option>
-                    <option value="NISSAN'">
-                        NISSAN 
-                    </option>
-                    <option value="OTHERS">
-                        OTHERS
-                    </option>
-                    <option value="RENAULT">
-                        RENAULT
-                    </option>
-                    <option value="TOYOTA'">
-                        TOYOTA
-                    </option>
-                    <option value="VOLKSWAGEN">
-                        VOLKSWAGEN
-                    </option>
-                    <option value="MAHINDRA">
-                        MAHINDRA
-                    </option>
-                    <option value="CHEVROLET">
-                        CHEVROLET
-                    </option>
-                    <option value="EICHER">
-                        EICHER
-                    </option>
-                    <option value="FIAT">
-                        FIAT
-                    </option>
-                    <option value="XL6">
-                        XL6
-                    </option>
-                    <option value="FORD">
-                        FORD
-                    </option>
-                    <option value="FORCE MOTORS">
-                        FORCE MOTORS
-                    </option>
-                    <option value="ESTEEM">
-                        ESTEEM
-                    </option>
-                    <option value="SUPER CARRY">
-                        SUPER CARRY
-                    </option>
-                    <option value="NEW ALTO K10">
-                        NEW ALTO K10
-                    </option>
-                </select>
-            </div>
-            <div class="'mb-3">
-                <label class="form-label">Vehicle Sold Category</label>
-                <select class="form-control" name="VehicleSoldCategory" placeholder="Enter Vehicle Sold Type" required>
-                    <option class="placeholder" selected disabled value="">Select Vehicle Sold Category</option>
-                    <option value="N-TV">
-                        N-TV
-                    </option>
-                    <option value="TV">
-                        TV
-                    </option>
-                    
-                </select>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">YOM</label>
-                <input class="form-control" type="number" name="YOM" placeholder="Enter Year Of Manufacturing" step="1" />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Date of Registration</label>
-                <input class="'form-control" type="'date" name="DateOfRegistration" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Selling Mileage</label>
-                <input class="form-control" type="number" name="SellingMileage" placeholder="Enter Selling Mileage" step="any" />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Buying Price</label>
-                <input class="form-control" type="number" name="BuyingPrice" placeholder="Enter Buying Price" step="any" />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Total Actual RF</label>
-                <input class="form-control" type="number" name="TotalActualRF" placeholder="Enter Refurbished Cost" step="any" />
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Warrenty Charges</label>
-                <input class="form-control" type="number" name="WarrentyCharges" placeholder="Enter Refurbished Cost" step="any" />
-            <div class="mb-3">
-                <label class="form-label">Insurance Charges</label>
-                <input class="form-control" type="number" name="InsuranceCharge" placeholder="Enter Insurance Charges" step="any" />
-            </div>
-            <div class="'mb-3">
-                <label class="form-label">Finance/Cash</label>
-                <select class="form-control" name="Finance/Cash" placeholder="Select Finance/cash" required>
-                    <option class="placeholder" selected disabled value="">Select F/C</option>
-                    <option value="F">
-                        F
+                    </div>
+                <div class="col-6">
+                    <div class="p-3 text-primary-emphasis bg-dark-subtle border border-primary-subtle">
+                        <h1 class="display-5">Vehicle Details</h1>
+                        <hr>
+                        <br>
                         
-                    </option>
-                    <option value="C">
-                        C
-                    </option>
-                    
-                </select>
-            </div>
-            <div class="mb-3">
-                <input class="btn btn-primary" type="submit" value="Predict Car Price" required />
-            </div>
+                        <div class="dropdown">
+                            <label class="form-label">Sale Type</label>
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" id="saleTypeDropdown" name="Saletype">
+                                Select Sale Type
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                                <li><a class="dropdown-item" href="#" onclick="setSelectedSaleType('Retail To Customer')">Retail To Customer</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="setSelectedSaleType('Wholesale To Broker')">Wholesale To Broker</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="setSelectedSaleType('Scrap')">Scrap</a></li>
+                            </ul>
+                        </div>
+                        
+                        <script>
+                            function setSelectedSaleType(saleType) {
+                                document.getElementById("saleTypeDropdown").innerHTML = saleType;
+                                document.getElementsByName("Saletype")[0].value = saleType;
+                            }
+                        </script>
+                        
+                          <br>
+                        <div class="dropdown">
+                          <label class="form-label">Customer City</label>
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" name="CustomerCity" id="citydropdown">
+                                Select City
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('ERNAKULAM')">ERNAKULAM</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('KOTTAYAM')">KOTTAYAM</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('PALA')">PALA</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('Thodupuzha ')">Thodupuzha </a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('PATHANAMTHITTA')">PATHANAMTHITTA</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('IDUKKI')">IDUKKI</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('KOLLAM')">KOLLAM</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('CHANGANASERRY')">CHANGANASERRY</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('KANJIRAPALLY')">KANJIRAPALLY</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('MUVATTUPUZHA')">MUVATTUPUZHA</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('THIRUVALLA')">THIRUVALLA</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('KOZHIKODE')">KOZHIKODE</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('MALAPPURAM')">MALAPPURAM</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('ALAPPUZHA')">ALAPPUZHA</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('COCHIN')">COCHIN</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('KANJIRAPPALLY')">KANJIRAPPALLY</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('CHENGANNUR')">CHENGANNUR</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('KOTTARAKKARA')">KOTTARAKKARA</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('THRISSUR')">THRISSUR</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('VALANCHERRY')">VALANCHERRY</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('KATTAPPANA')">KATTAPPANA</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('ALLEPPEY')">ALLEPPEY</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('KOTHAMANGALAM')">KOTHAMANGALAM</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('CHERTHALA')">CHERTHALA</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('KAYAMKULAM')">KAYAMKULAM</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('WAYANAD')">WAYANAD</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('Erattupetta ')">Erattupetta </a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('KASARGOD')">KASARGOD</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('MAVELLIKARA')">MAVELLIKARA</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('ADOOR')">ADOOR</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('PALAKKAD')">PALAKKAD</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('Vaikom ')">Vaikom </a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('CALICUT')">CALICUT</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('TRIVANDRUM')">TRIVANDRUM</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('CANNANORE ')">CANNANORE </a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('Athirampuzha ')">Athirampuzha </a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('QUILON')">QUILON</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('MALLAPPALLY')">MALLAPPALLY</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('THODUPUZHA')">THODUPUZHA</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('FORT KOCHI')">FORT KOCHI</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('MAVELIKARA')">MAVELIKARA</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('ANGAMALLY')">ANGAMALLY</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('THIRUVANANTHAPURAM')">THIRUVANANTHAPURAM</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('RANNI')">RANNI</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('PANDALAM')">PANDALAM</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('KONNI')">KONNI</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('ALAKODE')">ALAKODE</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('AYOOR')">AYOOR</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('Pallichal ')">Pallichal </a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('CHANGANASSERY')">CHANGANASSERY</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setSelectedCustomerCity('None')">None</a></li>
+                            </ul>
+                        </div>
+                        <script>
+                          function setSelectedCustomerCity(CusCity) {
+                              document.getElementById("citydropdown").innerHTML = CusCity;
+                              document.getElementsByName("CustomerCity")[0].value = CusCity;
+                          }
+                      </script>
 
-        </form>
-        <h2>
-            The Car Price is estimated as {{results}}
-        </h2>
-    </div>
+                        <br>
+                        <div class="dropdown">
+                            <label class="form-label">Model</label>
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" name="Model" id="modelid">
+                              Select Model
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('ALTO')">ALTO</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('WAGON R')">WAGON R</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('M 800')">M 800</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('ALTO 800')">ALTO 800</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('SWIFT')">SWIFT</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('ALTO K10')">ALTO K10</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('CELERIO')">CELERIO</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('SWIFT DZIRE')">SWIFT DZIRE</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('OMNI')">OMNI</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('EECO')">EECO</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('NEW SWIFT')">NEW SWIFT</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('HYUNDAI')">HYUNDAI</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('ALTO K10 (NEW)')">ALTO K10 (NEW)</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('RITZ')">RITZ</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('ZEN ESTILO')">ZEN ESTILO</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('WagonR')">WagonR</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('BALENO')">BALENO</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('ZEN')">ZEN</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('DZIRE')">DZIRE</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('VITARA BREZZA')">VITARA BREZZA</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('ERTIGA')">ERTIGA</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('A-STAR')">A-STAR</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('Ignis')">Ignis</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('S-PRESSO')">S-PRESSO</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('CIAZ')">CIAZ</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('TATA')">TATA</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('CHEVROLET')">CHEVROLET</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('OTHERS')">OTHERS</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('HONDA')">HONDA</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('SCROSS')">SCROSS</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('SX4')">SX4</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('NEW ERTIGA')">NEW ERTIGA</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('VOLKSWAGEN')">VOLKSWAGEN</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('RENAULT')">RENAULT</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('MAHINDRA')">MAHINDRA</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('NISSAN')">NISSAN</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('XL6')">XL6</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('TOYOTA')">TOYOTA</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('NEW BALENO')">NEW BALENO</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('FIAT')">FIAT</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('ESTEEM')">ESTEEM</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('NEW CELERIO')">NEW CELERIO</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('FORD')">FORD</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('FORCE MOTORS')">FORCE MOTORS</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('NEW ALTO K10')">NEW ALTO K10</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('EICHER')">EICHER</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setmodel('SUPER CARRY')">SUPER CARRY</a></li>
+
+                              
+                            </ul>
+                        </div>
+                        <script>
+                          function setmodel(Model) {
+                              document.getElementById("modelid").innerHTML = Model;
+                              document.getElementsByName("Model")[0].value = Model;
+                          }
+                      </script>
+                        <br>
+                        <div class="dropdown">
+                            <label class="form-label">Vehicle Sold Category</label>
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" name="VehicleSoldCategory" id="vehcatdropd">
+                              Select Vehichle Sold Category
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                              <li><a class="dropdown-item" href="#" onclick="setvehcat('TV')">TV</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setvehcat('N-TV')">N-TV</a></li>
+                              
+                            </ul>
+                        </div>
+                        <script>
+                          function setvehcat(VehCat) {
+                              document.getElementById("vehcatdropd").innerHTML = VehCat;
+                              document.getElementsByName("VehicleSoldCategory")[0].value = VehCat;
+                          }
+                      </script>
+
+                        <br>
+                        <div class="dropdown">
+                            <label class="form-label">Finance/cash</label>
+                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" name="Finance/Cash" id="fincashdropdown">
+                              Select Finance/Cash
+                            </button>
+                            <ul class="dropdown-menu dropdown-menu-dark">
+                              <li><a class="dropdown-item" href="#" onclick="setfin('F')">F</a></li>
+                              <li><a class="dropdown-item" href="#" onclick="setfin('C')">C</a></li>
+                              
+                            </ul>
+                        </div>
+                        <script>
+                          function setfin(fincash) {
+                              document.getElementById("fincashdropdown").innerHTML = fincash;
+                              document.getElementsByName("Finance/Cash")[0].value = fincash;
+                          }
+                      </script>
+                        <br>
+                    </div>
+                    <br>
+                  
+                        
+                        
+                    <div class="row">
+                      
+                        
+                       <div class="col-sm-6">
+                             <p class="h6 text-center">True Value In Stock</p>
+                             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                              <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                  <div class="card" style="width: 18rem;">
+                                    <img src="https://avgmotors.co.in/wp-content/uploads/2023/06/2017-IGNIS-DELTA-AMT-Front-view-265x190.jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                      <p class="card-text text-center">2017 IGNIS DELTA AMT</p>
+                                    </div>
+                                  </div>
+                                </div>
+                                  <div class="carousel-item">
+                                    <div class="card" style="width: 18rem;">
+                                      <img src="https://avgmotors.co.in/wp-content/uploads/2023/06/2006-SWIFT-VXI-front-view-265x190.jpg" class="card-img-top" alt="...">
+                                      <div class="card-body">
+                                        <p class="card-text text-center">2006 SWIFT VXI AMT</p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="carousel-item">
+                                    <div class="card" style="width: 18rem;">
+                                      <img src="https://avgmotors.co.in/wp-content/uploads/2023/06/2015-ERTIGA-ZDI-front-view-265x190.jpg" class="card-img-top" alt="...">
+                                      <div class="card-body">
+                                        <p class="card-text text-center">2015 ERTIGA ZDI</p>
+                                      </div>
+                                    </div>
+
+                                  </div>
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                  <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                  <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                       </div>
+                      <div class="col-sm-6">
+                            <p class="h6 text-center">Non True Value In Stock</p>
+                            <div id="carouselExampleControls1" class="carousel slide" data-bs-ride="carousel">
+                              <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                  <div class="card" style="width: 18rem;">
+                                    <img src="https://avgmotors.co.in/wp-content/uploads/2022/06/2016-Tiago-front-265x190.jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                      <p class="card-text text-center">2016 TIAGO</p>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="carousel-item">
+                                  <div class="card" style="width: 18rem;">
+                                    <img src="https://avgmotors.co.in/wp-content/uploads/2022/06/I10-Magna-2015-w-red-Front-265x190.jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text text-center">HYUNDAI I10 MAGNA 2015</p>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="carousel-item">
+                                  <div class="card" style="width: 18rem;">
+                                    <img src="https://avgmotors.co.in/wp-content/uploads/2021/10/Fiesta-265x190.jpg" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                        <p class="card-text text-center">FIESTA</p>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls1" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                              </button>
+                              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls1" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                              </button>
+                            </div>
+                      </div>
+                    
+
+                </div>
+                <br>
+                <div class="accordion" id="accordionExample">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        About AVG Motors
+                      </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <strong></strong>AVG Motors Ltd is a leading name in the automobile industry in Kerala, with a growing network of showrooms, workshops, True value outlets, and various other facilities. The company commenced its operations in 1998 as an authorized dealer for Maruti Suzuki cars.
+                      </div>
+                    </div>
+                  </div>
+                  <div class="accordion-item">
+                    <h2 class="accordion-header">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        About Project
+                      </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                      <div class="accordion-body">
+                        <strong></strong> This Project is a pure Machine Learning Regression problemcase in which the data is trained on Random Forest Regressor and the real time data is solely Owned by AVG Motors .
+                      </div>
+                    </div>
+                  </div>
+                  
+              </div>
+
+                <br>
+            </div>
+       
+        <br>
+        <div class="d-grid gap-2">
+            <input class="btn btn-primary" type="submit" value="Predict Car Price" required />
+            
+        </div>
+      
+         </form>
+         <figure class="text-center">
+            <blockquote class="blockquote">
+              <p>Click to see your Estimate : </p> {{results}}
+            </blockquote>
+            
+          </figure>
+        </div>
+ <footer style="background-color: black; color: white; padding: 10px; text-align: center;">
+      &copy; 2023 True Value Sale Price Prediction. All rights reserved.
+ </footer>
+      
+
+    
+        
+
+        
+
+
+       
+    
 </body>
 </html>
-
-            
-
-
-                    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
